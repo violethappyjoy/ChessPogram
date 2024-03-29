@@ -1,3 +1,16 @@
 body {
 	background: black;
+	color: white;
+}
+
+.container {
+	margin: 0;
+	padding: 0;
+	display: grid;
+	vertical-align: middle;
+	place-items: center;
+}
+
+.hidden {
+	display: none;
 }
