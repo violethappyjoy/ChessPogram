@@ -1,32 +1,110 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ChessPogram</title>
-</head>
-<body>
-	<div class="container">
-		<h1>ChessPogramming</h1>
-		<div class="board">
-			<canvas id="game-canvas"></canvas>
-		</div>
-	</div>
-	<script type="text/javascript" src="main.js"></script>
-	<div class="hidden">
-		<img src="assets/bishop_b.svg" id="piece_bishop_b">
-		<img src="assets/king_b.svg" id="piece_king_b">
-		<img src="assets/knight_b.svg" id="piece_knight_b">
-		<img src="assets/pawn_b.svg" id="piece_pawn_b">
-		<img src="assets/queen_b.svg" id="piece_queen_b">
-		<img src="assets/rook_b.svg" id="piece_rook_b">
-		<img src="assets/bishop_w.svg" id="piece_bishop_w">
-		<img src="assets/king_w.svg" id="piece_king_w">
-		<img src="assets/knight_w.svg" id="piece_knight_w">
-		<img src="assets/pawn_w.svg" id="piece_pawn_w">
-		<img src="assets/queen_w.svg" id="piece_queen_w">
-		<img src="assets/rook_w.svg" id="piece_rook_w">
-	</div>
-</body>
+<html lang="en">
+    <head>
+        <title>Play CHESS ONLINE!</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/chess.css">
+    </head>
+    <body style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div class="l">
+            <img class="logo" src="images/logo.png" alt="">
+            <div class="icons" style="display: flex; flex-direction: column;">
+                <div class="icon">
+                    <img src="images/home.png" alt="">
+                    <a href="index.html">
+                        <div>Home</div>
+                    </a>
+                </div>
+                <div class="icon">
+                    <img src="images/play.png" alt="">
+                    <div>Play</div>
+                </div>
+                <div class="icon">
+                    <img src="images/puzzles.png" alt="">
+                    <div>Puzzles</div>
+                </div>
+                <div class="icon">
+                    <img src="images/learn.png" alt="">
+                    <div>Learn</div>
+                </div>
+                <div class="icon">
+                    <img src="images/today.png" alt="">
+                    <div>Today</div>
+                </div>
+                <div class="icon">
+                    <img src="images/connect.png" alt="">
+                    <div>Connect</div>
+                </div>
+                <div class="icon">
+                    <img src="images/more.png" alt="">
+                    <div>More</div>
+                </div>
+                <div class="icon">
+                    <img src="images/trial.png" alt="">
+                    <div>Free Trial</div>
+                </div>
+            </div>
+            <input type="text" class="search" placeholder="Search">
+            <div class="options" style="display: flex; flex-direction: column;">
+                <div class="opt">
+                    <img src="images/light.png" alt="">
+                    <div>Light UI</div>
+                </div>
+                <div class="opt">
+                    <img src="images/collapse.png" alt="">
+                    <div>Collapse</div>
+                </div>
+                <div class="opt">
+                    <img src="images/settings.png" alt="">
+                    <div>Settings</div>
+                </div>
+                <div class="opt">
+                    <img src="images/help.png" alt="">
+                    <div>Help</div>
+                </div>
+            </div>
+        </div>
+        <div class="m">
+            <div class="buttons">
+                <button class="butt ng">New Game</button>
+                <button class="butt puz">Puzzles</button>
+                <button class="butt les">Lessons</button>
+                <button class="butt comp">vs Computer</button>
+            </div>
+            <div class="cards" style="display: flex; flex-direction: column;">
+                <div class="puzz" style="display: flex;">
+                    <img src="images/board1.jpg" id="img">
+                    <div class="text">
+                        <div id="h1">Solve chess puzzles for fun and learning.</div>
+                        <ul>
+                            <li>Develop better pattern recognition</li>
+                            <li>Choose from different training modes</li>
+                            <li>Over 150,000 chess puzzles to solve</li>
+                        </ul>
+                        <button class="text-button">Solve Puzzles</button>
+                    </div>
+                </div>
+                <div class="less" style="display: flex;">
+                    <img src="images/board2.jpg" id="img">
+                    <div class="text">
+                        <div id="h1">Take chess lessons that help you grow.</div>
+                        <ul>
+                            <li>Watch videos to learn concepts</li>
+                            <li>Complete challenges to pass lesssons</li>
+                            <li>Level up from novice to mastery</li>
+                        </ul>
+                        <button class="text-button">Start Lessons</button>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="r">
+            <div class="profile" style="display: flex">
+                <a href="login.php"><button class="login-btn">Login</button></a>
+                <a href="register.php"><button class="register-btn">Register</button></a>
+            </div>
+        </div>
+    </body>
 </html>
