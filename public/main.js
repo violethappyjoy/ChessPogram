@@ -35,6 +35,33 @@ function onSnapEnd () {
   board.position(game.fen())
 }
 
+function pgnToHtmlTable(pgn) {
+    // Split the PGN string into individual moves
+    const moves = pgn.split(/\d+\./).filter(move => move.trim() !== '');
+
+    // Initialize the HTML table
+    let html = '<table border="1"><tr><th>#</th><th>White</th><th>Black</th></tr>';
+
+    // Loop through each move and generate table rows
+    moves.forEach((move, index) => {
+        const moveNumber = index + 1;
+        const movePairs = move.trim().split(/\s+/);
+
+        // Extract white and black moves
+        const whiteMove = movePairs[0];
+        const blackMove = movePairs[1] || '';
+
+        // Append row to HTML table
+        html += `<tr><td>${moveNumber}</td><td>${whiteMove}</td><td>${blackMove}</td></tr>`;
+    });
+
+    // Close the HTML table
+    html += '</table>';
+
+    return html;
+}
+
+
 function updateStatus () {
   var status = ''
 
@@ -64,8 +91,8 @@ function updateStatus () {
   }
 
   $status.html(status)
-  $fen.html(game.fen())
-  $pgn.html(game.pgn())
+  // $fen.html(game.fen())
+  $pgn.html(pgnToHtmlTable(game.pgn()))
 }
 
 var config = {
