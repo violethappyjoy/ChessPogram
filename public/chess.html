@@ -2,31 +2,30 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="styles.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ChessPogram</title>
+	<link rel="stylesheet"
+      href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+      integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+      crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+        integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<title>chess</title>
 </head>
 <body>
-	<div class="container">
-		<h1>ChessPogramming</h1>
-		<div class="board">
-			<canvas id="game-canvas"></canvas>
-		</div>
-	</div>
-	<script type="text/javascript" src="main.js"></script>
-	<div class="hidden">
-		<img src="assets/bishop_b.svg" id="piece_bishop_b">
-		<img src="assets/king_b.svg" id="piece_king_b">
-		<img src="assets/knight_b.svg" id="piece_knight_b">
-		<img src="assets/pawn_b.svg" id="piece_pawn_b">
-		<img src="assets/queen_b.svg" id="piece_queen_b">
-		<img src="assets/rook_b.svg" id="piece_rook_b">
-		<img src="assets/bishop_w.svg" id="piece_bishop_w">
-		<img src="assets/king_w.svg" id="piece_king_w">
-		<img src="assets/knight_w.svg" id="piece_knight_w">
-		<img src="assets/pawn_w.svg" id="piece_pawn_w">
-		<img src="assets/queen_w.svg" id="piece_queen_w">
-		<img src="assets/rook_w.svg" id="piece_rook_w">
-	</div>
+	<h1>ChessPogram</h1>
+	<div id="myBoard" style="width: 400px"></div>
+	<label>Status:</label>
+	<div id="status"></div>
+	<label>FEN:</label>
+	<div id="fen"></div>
+	<label>PGN:</label>
+	<div id="pgn"></div>
+	<script src="main.js"></script>
 </body>
 </html>

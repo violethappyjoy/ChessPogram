@@ -1,113 +1,80 @@
-class Square {
-	constructor(x, y, width, color) {
-		this.x = x;
-		this.y = y;
-		this.width  = width;
-		this.color  = color;
-	}
-	draw(ctx) {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.width);
-	}
+var board = null
+var game = new Chess()
+var $status = $('#status')
+var $fen = $('#fen')
+var $pgn = $('#pgn')
+
+function onDragStart (source, piece, position, orientation) {
+  // do not pick up pieces if the game is over
+  if (game.game_over()) return false
+
+  // only pick up pieces for the side to move
+  if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+    return false
+  }
 }
 
-class Piece {
-	constructor(x, y, width, height, type) {
-		this.x = x;
-		this.y = y;
-		this.width  = width;
-		this.height  = height;
-		this.type  = type;
-		this.active = false;
-		this.img = document.getElementById("piece_" + this.type);
-	}
-	draw(ctx) {
-		ctx.drawImage(
-			this.img,
-			this.x,
-			this.y, 
-			this.width, 
-			this.height
-		);
-	}
+function onDrop (source, target) {
+  // see if the move is legal
+  var move = game.move({
+    from: source,
+    to: target,
+    promotion: 'q' // NOTE: always promote to a queen for example simplicity
+  })
+
+  // illegal move
+  if (move === null) return 'snapback'
+
+  updateStatus()
 }
 
-mouse = {
-	x: undefined,
-	y: undefined,
-	isdown: undefined
+// update the board position after the piece snap
+// for castling, en passant, pawn promotion
+function onSnapEnd () {
+  board.position(game.fen())
 }
 
-const canvas = document.getElementById('game-canvas');
+function updateStatus () {
+  var status = ''
 
-canvas.width = 0.8 * Math.min(innerHeight, innerWidth);
-canvas.height = 0.8 * Math.min(innerHeight, innerWidth);
+  var moveColor = 'White'
+  if (game.turn() === 'b') {
+    moveColor = 'Black'
+  }
 
-squares = [];
-for (let i = 0; i < 8; i++) {
-	for (let j = 0; j < 8; j++) {
-		squares.push(new Square(
-			i * canvas.width / 8,
-			j * canvas.width / 8, 
-			canvas.width / 8,
-			(i + j) % 2 === 0 ? "white" : "green"
-		))
-	}
+  // checkmate?
+  if (game.in_checkmate()) {
+    status = 'Game over, ' + moveColor + ' is in checkmate.'
+  }
+
+  // draw?
+  else if (game.in_draw()) {
+    status = 'Game over, drawn position'
+  }
+
+  // game still on
+  else {
+    status = moveColor + ' to move'
+
+    // check?
+    if (game.in_check()) {
+      status += ', ' + moveColor + ' is in check'
+    }
+  }
+
+  $status.html(status)
+  $fen.html(game.fen())
+  $pgn.html(game.pgn())
 }
 
-function handleMouseMove(e) {
-	var rect = e.target.getBoundingClientRect();
-    var x = e.clientX - rect.left; //x position within the element.
-    var y = e.clientY - rect.top;  //y position within the element.
-    mouse.x = x;
-    mouse.y = y;
+var config = {
+  draggable: true,
+  position: 'start',
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onSnapEnd: onSnapEnd
 }
+board = Chessboard('myBoard', config)
 
-function handleMouseDown(event) {
-	mouse.isdown = true;
-	pieces.push(new Piece(currentSquare.x, currentSquare.y, currentSquare.width, currentSquare.width, "king_b"))
-}
-
-function handleMouseUp(event) {
-	mouse.isdown = false;
-}
-
-var currentSquare = undefined;
-
-function updCurrentSquare() {
-	for (var i = squares.length - 1; i >= 0; i--) {
-		if (
-			squares[i].x < mouse.x &&
-			squares[i].y < mouse.y &&
-			squares[i].x + squares[i].width >= mouse.x &&
-			squares[i].y + squares[i].width >= mouse.y
-		) {
-			// console.log("ho")
-			return squares[i];
-		}
-	}
-	// console.log("hey")
-}
-
-canvas.addEventListener('mousemove', handleMouseMove)
-canvas.addEventListener('mousedown', handleMouseDown)
-canvas.addEventListener('mouseup', handleMouseUp)
-
-
-pieces = [];
-
-const ctx = canvas.getContext('2d');
-
-function animationLoop() {
-    currentSquare = updCurrentSquare();
-    // console.log(currentSquare)
-	for (var i = squares.length - 1; i >= 0; i--) {
-		squares[i].draw(ctx);
-	}
-	for (var i = pieces.length - 1; i >= 0; i--) {
-		pieces[i].draw(ctx);
-	}
-	requestAnimationFrame(animationLoop);
-}
-
-animationLoop()
+updateStatus()
