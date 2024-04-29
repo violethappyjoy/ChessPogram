@@ -38,7 +38,7 @@
 
             if (!empty($_POST["name"])) {
                 $name = preprocess_input($_POST["name"]);
-                if (!preg_match("/^[a-zA-Z]*$/", $name)) {
+                if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
                     $nameErr = "Invalid value";
                     $name = "";
                 }
@@ -142,6 +142,7 @@
                         </h3>
                         <center><button type="submit" style="background-color: white; color: black;">Register</button></center>
                     </form>
+                    <a href="login.php">Already have an account?</a>
                 </div>
             <!-- </center> -->
         </div>

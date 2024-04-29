@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit;
+}
+$username = $_SESSION["username"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -102,7 +110,7 @@
             <div class="profile" style="display: flex">
                 <img src="images/userimage.svg" class="curs" id="user">
                 <div class="profile-text" style="background-color: rgb(46, 45, 41)">
-                    <div class="name curs">Butterscotch00</div>
+                    <div class="name curs"><?php echo $username?></div>
                     <div class="profile-options">
                         <div class="subtxt curs" style="display: flex">
                             <img src="images/user.png">
