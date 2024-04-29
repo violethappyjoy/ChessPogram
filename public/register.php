@@ -11,7 +11,7 @@
         include 'connect.php';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // var_dump($_POST);
-            $email = $username = $name = $password  = "";
+            $email = $username = $name = $password = $Err = "";
             $emailErr = $usernameErr = $nameErr = $passwordErr = $confpasswdErr = "";
             if (!empty($_POST["email"])) {
                 $email = preprocess_input($_POST["email"]);
@@ -66,7 +66,8 @@
 
             $flag = insertUserData($conn, $email, $password, $name, $username);
             if (!$flag) {
-                die("ERROR: failed query");
+                // die("ERROR: failed query");
+                $Err = "ERROR: failed query";
             }else {
                 echo "<script>alert('SUCCESS');  window.location='login.php';</script>";
             }
@@ -90,11 +91,17 @@
         }
 
         function insertUserData($conn, $email, $password, $name, $username){
-            $sql = "INSERT INTO userData (name, email, username, password) VALUES ('$name', '$email', '$username', '$password')";
-            if (mysqli_query($conn, $sql)) {
-                return true; 
-            } else {
-                return false; 
+            if (!empty($username) && !empty($email) && !empty($password)) {
+                echo $username;
+                // return true;
+                $sql = "INSERT INTO userData (name, email, username, password) VALUES ('$name', '$email', '$username', '$password')";
+                if (mysqli_query($conn, $sql)) {
+                    return true; 
+                } else {
+                    return false; 
+                }
+            }else{
+                return false;
             }
         }
 
@@ -140,7 +147,9 @@
                             &nbsp;&nbsp;Confirm Password: <input type="password" name="confpasswd" style="width: 40%;">
                             <span class="error">* <?php echo $confpasswdErr;?></span>
                         </h3>
-                        <center><button type="submit" style="background-color: white; color: black;">Register</button></center>
+                        <center>
+                        <span class="error"><?php echo $Err;?></span><br>
+                            <button type="submit" style="background-color: white; color: black;">Register</button></center>
                     </form>
                     <a href="login.php">Already have an account?</a>
                 </div>
