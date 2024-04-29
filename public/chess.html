@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/game.css">
 	<link rel="stylesheet"
       href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
       integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
@@ -18,14 +19,23 @@
 	<title>chess</title>
 </head>
 <body>
-	<h1>ChessPogram</h1>
-	<div id="myBoard" style="width: 400px"></div>
-	<label>Status:</label>
-	<div id="status"></div>
-	<label>FEN:</label>
-	<div id="fen"></div>
-	<label>PGN:</label>
-	<div id="pgn"></div>
+	<table id="container" align="center">
+		<tr><td colspan="2"><h1>Chess</h1></td></tr>
+		<tr>
+			<td>
+				<div id="myBoard" style="width: 400px"></div>
+			</td>
+			<td>
+				<label>Status:</label>
+				<div id="status"></div>
+				<!-- <label>FEN:</label>
+				<div id="fen"></div> -->
+				<br>
+				<label>PGN:</label>
+				<div id="pgn"></div>
+			</td>
+		</tr>
+	</table>
 	<script src="main.js"></script>
 </body>
 </html>
