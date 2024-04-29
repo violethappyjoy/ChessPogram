@@ -10,7 +10,7 @@
     <?php
         include 'connect.php';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            var_dump($_POST);
+            // var_dump($_POST);
             $email = $username = $name = $password  = "";
             $emailErr = $usernameErr = $nameErr = $passwordErr = $confpasswdErr = "";
             if (!empty($_POST["email"])) {
@@ -68,7 +68,7 @@
             if (!$flag) {
                 die("ERROR: failed query");
             }else {
-                echo "<script>alert('SUCCESS');</script>";
+                echo "<script>alert('SUCCESS');  window.location='login.php';</script>";
             }
 
         }
