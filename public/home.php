@@ -19,7 +19,9 @@ $username = $_SESSION["username"];
             <div class="icons" style="display: flex; flex-direction: column;">
                 <div class="icon">
                     <img src="images/home.png" alt="">
-                    <div>Home</div>
+                    <a href="index.html">
+                        <div>Home</div>
+                    </a>
                 </div>
                 <div class="icon">
                     <img src="images/play.png" alt="">
@@ -72,7 +74,7 @@ $username = $_SESSION["username"];
         </div>
         <div class="m">
             <div class="buttons">
-                <button class="butt ng">New Game</button>
+                <a href="chess.html"><button class="butt ng">New Game</button></a>
                 <button class="butt puz">Puzzles</button>
                 <button class="butt les">Lessons</button>
                 <button class="butt comp">vs Computer</button>
